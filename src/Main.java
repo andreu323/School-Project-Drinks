@@ -14,13 +14,24 @@ public class Main {
         }
         return alc_drinks > fruit_drinks;
     }
-    public static ArrayList<Drink> drinksForKids(Drink[] drinks){
-        ArrayList<Drink> kidsDrinks = new ArrayList<>();
+    public static Drink[] drinksForKids(Drink[] drinks){
+
+        int kidsDrinksCount = 0;
         for (int i = 0; i < drinks.length; i++){
             Drink currect = drinks[i];
-            if(currect.getVodka() == 0) kidsDrinks.add(currect);
+            if(currect.getVodka() == 0) {
+                kidsDrinksCount++;
+            }
         }
-
+        Drink[] kidsDrinks = new Drink[kidsDrinksCount];
+        int pointer = 0;
+        for (int i = 0; i < drinks.length; i++){
+            Drink currect = drinks[i];
+            if(currect.getVodka() == 0) {
+                kidsDrinks[pointer] = currect;
+                pointer++;
+            }
+        }
         return kidsDrinks;
     }
 
@@ -46,7 +57,7 @@ public class Main {
                 new Drink(100,200,0),
         };
         System.out.println("Is too much alc drinks: "+ isTooMuchAlc(drinks) );
-        System.out.println("drinks for kids: " + drinksForKids(drinks));
+        System.out.println("drinks for kids: " + Arrays.toString(drinksForKids(drinks)));
 
 
     }
